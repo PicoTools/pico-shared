@@ -1,0 +1,4 @@
+[submodule "proto/schema"]
+	path = proto/schema
+	url = https://github.com/PicoTools/pico-proto.git
+  branch = master
