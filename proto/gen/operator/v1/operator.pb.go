@@ -2602,7 +2602,7 @@ type AntResponse struct {
 	// Name of ant's process
 	ProcName *wrapperspb.StringValue `protobuf:"bytes,11,opt,name=proc_name,json=procName,proto3" json:"proc_name,omitempty"`
 	// Ant's process ID
-	Pid *wrapperspb.UInt32Value `protobuf:"bytes,12,opt,name=pid,proto3" json:"pid,omitempty"`
+	Pid *wrapperspb.UInt64Value `protobuf:"bytes,12,opt,name=pid,proto3" json:"pid,omitempty"`
 	// [MANDATORY] Process architecture
 	Arch uint32 `protobuf:"varint,13,opt,name=arch,proto3" json:"arch,omitempty"`
 	// [MANDATORY] Sleep value of ant's process (in seconds)
@@ -2730,7 +2730,7 @@ func (x *AntResponse) GetProcName() *wrapperspb.StringValue {
 	return nil
 }
 
-func (x *AntResponse) GetPid() *wrapperspb.UInt32Value {
+func (x *AntResponse) GetPid() *wrapperspb.UInt64Value {
 	if x != nil {
 		return x.Pid
 	}
@@ -6240,7 +6240,7 @@ var file_operator_v1_operator_proto_rawDesc = []byte{
 	0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52,
 	0x08, 0x70, 0x72, 0x6f, 0x63, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x2e, 0x0a, 0x03, 0x70, 0x69, 0x64,
 	0x18, 0x0c, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x55, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x56,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x55, 0x49, 0x6e, 0x74, 0x36, 0x34, 0x56,
 	0x61, 0x6c, 0x75, 0x65, 0x52, 0x03, 0x70, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x61, 0x72, 0x63,
 	0x68, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x04, 0x61, 0x72, 0x63, 0x68, 0x12, 0x14, 0x0a,
 	0x05, 0x73, 0x6c, 0x65, 0x65, 0x70, 0x18, 0x0e, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x73, 0x6c,
@@ -6937,32 +6937,33 @@ var file_operator_v1_operator_proto_goTypes = []any{
 	(*timestamppb.Timestamp)(nil),        // 89: google.protobuf.Timestamp
 	(*emptypb.Empty)(nil),                // 90: google.protobuf.Empty
 	(*wrapperspb.BoolValue)(nil),         // 91: google.protobuf.BoolValue
-	(*v1.CapSleep)(nil),                  // 92: common.v1.CapSleep
-	(*v1.CapLs)(nil),                     // 93: common.v1.CapLs
-	(*v1.CapPwd)(nil),                    // 94: common.v1.CapPwd
-	(*v1.CapCd)(nil),                     // 95: common.v1.CapCd
-	(*v1.CapWhoami)(nil),                 // 96: common.v1.CapWhoami
-	(*v1.CapPs)(nil),                     // 97: common.v1.CapPs
-	(*v1.CapCat)(nil),                    // 98: common.v1.CapCat
-	(*v1.CapExec)(nil),                   // 99: common.v1.CapExec
-	(*v1.CapCp)(nil),                     // 100: common.v1.CapCp
-	(*v1.CapJobs)(nil),                   // 101: common.v1.CapJobs
-	(*v1.CapJobkill)(nil),                // 102: common.v1.CapJobkill
-	(*v1.CapKill)(nil),                   // 103: common.v1.CapKill
-	(*v1.CapMv)(nil),                     // 104: common.v1.CapMv
-	(*v1.CapMkdir)(nil),                  // 105: common.v1.CapMkdir
-	(*v1.CapRm)(nil),                     // 106: common.v1.CapRm
-	(*v1.CapExecAssembly)(nil),           // 107: common.v1.CapExecAssembly
-	(*v1.CapShellcodeInjection)(nil),     // 108: common.v1.CapShellcodeInjection
-	(*v1.CapDownload)(nil),               // 109: common.v1.CapDownload
-	(*v1.CapUpload)(nil),                 // 110: common.v1.CapUpload
-	(*v1.CapPause)(nil),                  // 111: common.v1.CapPause
-	(*v1.CapDestruct)(nil),               // 112: common.v1.CapDestruct
-	(*v1.CapExecDetach)(nil),             // 113: common.v1.CapExecDetach
-	(*v1.CapShell)(nil),                  // 114: common.v1.CapShell
-	(*v1.CapPpid)(nil),                   // 115: common.v1.CapPpid
-	(*v1.CapExit)(nil),                   // 116: common.v1.CapExit
-	(*wrapperspb.BytesValue)(nil),        // 117: google.protobuf.BytesValue
+	(*wrapperspb.UInt64Value)(nil),       // 92: google.protobuf.UInt64Value
+	(*v1.CapSleep)(nil),                  // 93: common.v1.CapSleep
+	(*v1.CapLs)(nil),                     // 94: common.v1.CapLs
+	(*v1.CapPwd)(nil),                    // 95: common.v1.CapPwd
+	(*v1.CapCd)(nil),                     // 96: common.v1.CapCd
+	(*v1.CapWhoami)(nil),                 // 97: common.v1.CapWhoami
+	(*v1.CapPs)(nil),                     // 98: common.v1.CapPs
+	(*v1.CapCat)(nil),                    // 99: common.v1.CapCat
+	(*v1.CapExec)(nil),                   // 100: common.v1.CapExec
+	(*v1.CapCp)(nil),                     // 101: common.v1.CapCp
+	(*v1.CapJobs)(nil),                   // 102: common.v1.CapJobs
+	(*v1.CapJobkill)(nil),                // 103: common.v1.CapJobkill
+	(*v1.CapKill)(nil),                   // 104: common.v1.CapKill
+	(*v1.CapMv)(nil),                     // 105: common.v1.CapMv
+	(*v1.CapMkdir)(nil),                  // 106: common.v1.CapMkdir
+	(*v1.CapRm)(nil),                     // 107: common.v1.CapRm
+	(*v1.CapExecAssembly)(nil),           // 108: common.v1.CapExecAssembly
+	(*v1.CapShellcodeInjection)(nil),     // 109: common.v1.CapShellcodeInjection
+	(*v1.CapDownload)(nil),               // 110: common.v1.CapDownload
+	(*v1.CapUpload)(nil),                 // 111: common.v1.CapUpload
+	(*v1.CapPause)(nil),                  // 112: common.v1.CapPause
+	(*v1.CapDestruct)(nil),               // 113: common.v1.CapDestruct
+	(*v1.CapExecDetach)(nil),             // 114: common.v1.CapExecDetach
+	(*v1.CapShell)(nil),                  // 115: common.v1.CapShell
+	(*v1.CapPpid)(nil),                   // 116: common.v1.CapPpid
+	(*v1.CapExit)(nil),                   // 117: common.v1.CapExit
+	(*wrapperspb.BytesValue)(nil),        // 118: google.protobuf.BytesValue
 }
 var file_operator_v1_operator_proto_depIdxs = []int32{
 	0,   // 0: operator.v1.CancelTasksRequest.cookie:type_name -> operator.v1.SessionCookie
@@ -7027,7 +7028,7 @@ var file_operator_v1_operator_proto_depIdxs = []int32{
 	88,  // 59: operator.v1.AntResponse.domain:type_name -> google.protobuf.StringValue
 	91,  // 60: operator.v1.AntResponse.privileged:type_name -> google.protobuf.BoolValue
 	88,  // 61: operator.v1.AntResponse.proc_name:type_name -> google.protobuf.StringValue
-	87,  // 62: operator.v1.AntResponse.pid:type_name -> google.protobuf.UInt32Value
+	92,  // 62: operator.v1.AntResponse.pid:type_name -> google.protobuf.UInt64Value
 	87,  // 63: operator.v1.AntResponse.color:type_name -> google.protobuf.UInt32Value
 	88,  // 64: operator.v1.AntResponse.note:type_name -> google.protobuf.StringValue
 	89,  // 65: operator.v1.AntResponse.first:type_name -> google.protobuf.Timestamp
@@ -7077,47 +7078,47 @@ var file_operator_v1_operator_proto_depIdxs = []int32{
 	71,  // 109: operator.v1.NewGroupRequest.group:type_name -> operator.v1.NewTaskGroupRequest
 	72,  // 110: operator.v1.NewGroupRequest.message:type_name -> operator.v1.NewTaskMessageRequest
 	73,  // 111: operator.v1.NewGroupRequest.task:type_name -> operator.v1.NewTaskRequest
-	92,  // 112: operator.v1.NewTaskRequest.sleep:type_name -> common.v1.CapSleep
-	93,  // 113: operator.v1.NewTaskRequest.ls:type_name -> common.v1.CapLs
-	94,  // 114: operator.v1.NewTaskRequest.pwd:type_name -> common.v1.CapPwd
-	95,  // 115: operator.v1.NewTaskRequest.cd:type_name -> common.v1.CapCd
-	96,  // 116: operator.v1.NewTaskRequest.whoami:type_name -> common.v1.CapWhoami
-	97,  // 117: operator.v1.NewTaskRequest.ps:type_name -> common.v1.CapPs
-	98,  // 118: operator.v1.NewTaskRequest.cat:type_name -> common.v1.CapCat
-	99,  // 119: operator.v1.NewTaskRequest.exec:type_name -> common.v1.CapExec
-	100, // 120: operator.v1.NewTaskRequest.cp:type_name -> common.v1.CapCp
-	101, // 121: operator.v1.NewTaskRequest.jobs:type_name -> common.v1.CapJobs
-	102, // 122: operator.v1.NewTaskRequest.jobkill:type_name -> common.v1.CapJobkill
-	103, // 123: operator.v1.NewTaskRequest.kill:type_name -> common.v1.CapKill
-	104, // 124: operator.v1.NewTaskRequest.mv:type_name -> common.v1.CapMv
-	105, // 125: operator.v1.NewTaskRequest.mkdir:type_name -> common.v1.CapMkdir
-	106, // 126: operator.v1.NewTaskRequest.rm:type_name -> common.v1.CapRm
-	107, // 127: operator.v1.NewTaskRequest.exec_assembly:type_name -> common.v1.CapExecAssembly
-	108, // 128: operator.v1.NewTaskRequest.shellcode_injection:type_name -> common.v1.CapShellcodeInjection
-	109, // 129: operator.v1.NewTaskRequest.download:type_name -> common.v1.CapDownload
-	110, // 130: operator.v1.NewTaskRequest.upload:type_name -> common.v1.CapUpload
-	111, // 131: operator.v1.NewTaskRequest.pause:type_name -> common.v1.CapPause
-	112, // 132: operator.v1.NewTaskRequest.destruct:type_name -> common.v1.CapDestruct
-	113, // 133: operator.v1.NewTaskRequest.exec_detach:type_name -> common.v1.CapExecDetach
-	114, // 134: operator.v1.NewTaskRequest.shell:type_name -> common.v1.CapShell
-	115, // 135: operator.v1.NewTaskRequest.ppid:type_name -> common.v1.CapPpid
-	116, // 136: operator.v1.NewTaskRequest.exit:type_name -> common.v1.CapExit
+	93,  // 112: operator.v1.NewTaskRequest.sleep:type_name -> common.v1.CapSleep
+	94,  // 113: operator.v1.NewTaskRequest.ls:type_name -> common.v1.CapLs
+	95,  // 114: operator.v1.NewTaskRequest.pwd:type_name -> common.v1.CapPwd
+	96,  // 115: operator.v1.NewTaskRequest.cd:type_name -> common.v1.CapCd
+	97,  // 116: operator.v1.NewTaskRequest.whoami:type_name -> common.v1.CapWhoami
+	98,  // 117: operator.v1.NewTaskRequest.ps:type_name -> common.v1.CapPs
+	99,  // 118: operator.v1.NewTaskRequest.cat:type_name -> common.v1.CapCat
+	100, // 119: operator.v1.NewTaskRequest.exec:type_name -> common.v1.CapExec
+	101, // 120: operator.v1.NewTaskRequest.cp:type_name -> common.v1.CapCp
+	102, // 121: operator.v1.NewTaskRequest.jobs:type_name -> common.v1.CapJobs
+	103, // 122: operator.v1.NewTaskRequest.jobkill:type_name -> common.v1.CapJobkill
+	104, // 123: operator.v1.NewTaskRequest.kill:type_name -> common.v1.CapKill
+	105, // 124: operator.v1.NewTaskRequest.mv:type_name -> common.v1.CapMv
+	106, // 125: operator.v1.NewTaskRequest.mkdir:type_name -> common.v1.CapMkdir
+	107, // 126: operator.v1.NewTaskRequest.rm:type_name -> common.v1.CapRm
+	108, // 127: operator.v1.NewTaskRequest.exec_assembly:type_name -> common.v1.CapExecAssembly
+	109, // 128: operator.v1.NewTaskRequest.shellcode_injection:type_name -> common.v1.CapShellcodeInjection
+	110, // 129: operator.v1.NewTaskRequest.download:type_name -> common.v1.CapDownload
+	111, // 130: operator.v1.NewTaskRequest.upload:type_name -> common.v1.CapUpload
+	112, // 131: operator.v1.NewTaskRequest.pause:type_name -> common.v1.CapPause
+	113, // 132: operator.v1.NewTaskRequest.destruct:type_name -> common.v1.CapDestruct
+	114, // 133: operator.v1.NewTaskRequest.exec_detach:type_name -> common.v1.CapExecDetach
+	115, // 134: operator.v1.NewTaskRequest.shell:type_name -> common.v1.CapShell
+	116, // 135: operator.v1.NewTaskRequest.ppid:type_name -> common.v1.CapPpid
+	117, // 136: operator.v1.NewTaskRequest.exit:type_name -> common.v1.CapExit
 	0,   // 137: operator.v1.SubscribeTasksRequest.cookie:type_name -> operator.v1.SessionCookie
 	76,  // 138: operator.v1.SubscribeTasksRequest.hello:type_name -> operator.v1.SubscribeTasksHelloRequest
 	77,  // 139: operator.v1.SubscribeTasksRequest.start:type_name -> operator.v1.StartPollBeaconRequest
 	78,  // 140: operator.v1.SubscribeTasksRequest.stop:type_name -> operator.v1.StopPollBeaconRequest
 	89,  // 141: operator.v1.TasksGroupResponse.created:type_name -> google.protobuf.Timestamp
 	89,  // 142: operator.v1.TasksMessageResponse.created:type_name -> google.protobuf.Timestamp
-	117, // 143: operator.v1.TasksResponse.output:type_name -> google.protobuf.BytesValue
+	118, // 143: operator.v1.TasksResponse.output:type_name -> google.protobuf.BytesValue
 	89,  // 144: operator.v1.TasksResponse.created:type_name -> google.protobuf.Timestamp
-	117, // 145: operator.v1.TasksDoneResponse.output:type_name -> google.protobuf.BytesValue
+	118, // 145: operator.v1.TasksDoneResponse.output:type_name -> google.protobuf.BytesValue
 	79,  // 146: operator.v1.SubscribeTasksResponse.group:type_name -> operator.v1.TasksGroupResponse
 	80,  // 147: operator.v1.SubscribeTasksResponse.message:type_name -> operator.v1.TasksMessageResponse
 	81,  // 148: operator.v1.SubscribeTasksResponse.task:type_name -> operator.v1.TasksResponse
 	82,  // 149: operator.v1.SubscribeTasksResponse.task_status:type_name -> operator.v1.TasksStatusResponse
 	83,  // 150: operator.v1.SubscribeTasksResponse.task_done:type_name -> operator.v1.TasksDoneResponse
 	0,   // 151: operator.v1.GetTaskOutputRequest.cookie:type_name -> operator.v1.SessionCookie
-	117, // 152: operator.v1.GetTaskOutputResponse.output:type_name -> google.protobuf.BytesValue
+	118, // 152: operator.v1.GetTaskOutputResponse.output:type_name -> google.protobuf.BytesValue
 	35,  // 153: operator.v1.OperatorService.Hello:input_type -> operator.v1.HelloRequest
 	38,  // 154: operator.v1.OperatorService.SubscribeListeners:input_type -> operator.v1.SubscribeListenersRequest
 	46,  // 155: operator.v1.OperatorService.SubscribeAnts:input_type -> operator.v1.SubscribeAntsRequest
