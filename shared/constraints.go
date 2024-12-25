@@ -1,6 +1,11 @@
 package shared
 
 const (
+	// default color used in process of object's creation
+	DefaultObjectColor = uint32(0)
+)
+
+const (
 	// maximum length of operator's username
 	OperatorUsernameMaxLength = 256
 	// minimum length of operator's username
@@ -34,8 +39,6 @@ const (
 	ChatMessageMinLength = 1
 	// maximum length of chat's message
 	ChatMessageMaxLength = 4096
-	// server name for posing in chat
-	ChatSrvFrom = ""
 )
 
 const (
