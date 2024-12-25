@@ -42,7 +42,7 @@ const (
 	OperatorService_SetCredentialsColor_FullMethodName  = "/operator.v1.OperatorService/SetCredentialsColor"
 	OperatorService_SetCredentialNote_FullMethodName    = "/operator.v1.OperatorService/SetCredentialNote"
 	OperatorService_SetCredentialsNote_FullMethodName   = "/operator.v1.OperatorService/SetCredentialsNote"
-	OperatorService_NewGroup_FullMethodName             = "/operator.v1.OperatorService/NewGroup"
+	OperatorService_NewCommand_FullMethodName           = "/operator.v1.OperatorService/NewCommand"
 	OperatorService_CancelTasks_FullMethodName          = "/operator.v1.OperatorService/CancelTasks"
 	OperatorService_GetTaskOutput_FullMethodName        = "/operator.v1.OperatorService/GetTaskOutput"
 )
@@ -100,8 +100,8 @@ type OperatorServiceClient interface {
 	SetCredentialNote(ctx context.Context, in *SetCredentialNoteRequest, opts ...grpc.CallOption) (*SetCredentialNoteResponse, error)
 	// Update note on list of credentials
 	SetCredentialsNote(ctx context.Context, in *SetCredentialsNoteRequest, opts ...grpc.CallOption) (*SetCredentialsNoteResponse, error)
-	// Create new task group for merging tasks and messages in
-	NewGroup(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[NewGroupRequest, NewGroupResponse], error)
+	// Create new command for merging tasks and messages in
+	NewCommand(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[NewCommandRequest, NewCommandResponse], error)
 	// Cancel all tasks in queue created by operator and located in status "NEW"
 	CancelTasks(ctx context.Context, in *CancelTasksRequest, opts ...grpc.CallOption) (*CancelTasksResponse, error)
 	// Get direct task's output. Used to get task's big output
@@ -403,18 +403,18 @@ func (c *operatorServiceClient) SetCredentialsNote(ctx context.Context, in *SetC
 	return out, nil
 }
 
-func (c *operatorServiceClient) NewGroup(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[NewGroupRequest, NewGroupResponse], error) {
+func (c *operatorServiceClient) NewCommand(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[NewCommandRequest, NewCommandResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &OperatorService_ServiceDesc.Streams[7], OperatorService_NewGroup_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &OperatorService_ServiceDesc.Streams[7], OperatorService_NewCommand_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[NewGroupRequest, NewGroupResponse]{ClientStream: stream}
+	x := &grpc.GenericClientStream[NewCommandRequest, NewCommandResponse]{ClientStream: stream}
 	return x, nil
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type OperatorService_NewGroupClient = grpc.ClientStreamingClient[NewGroupRequest, NewGroupResponse]
+type OperatorService_NewCommandClient = grpc.ClientStreamingClient[NewCommandRequest, NewCommandResponse]
 
 func (c *operatorServiceClient) CancelTasks(ctx context.Context, in *CancelTasksRequest, opts ...grpc.CallOption) (*CancelTasksResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -489,8 +489,8 @@ type OperatorServiceServer interface {
 	SetCredentialNote(context.Context, *SetCredentialNoteRequest) (*SetCredentialNoteResponse, error)
 	// Update note on list of credentials
 	SetCredentialsNote(context.Context, *SetCredentialsNoteRequest) (*SetCredentialsNoteResponse, error)
-	// Create new task group for merging tasks and messages in
-	NewGroup(grpc.ClientStreamingServer[NewGroupRequest, NewGroupResponse]) error
+	// Create new command for merging tasks and messages in
+	NewCommand(grpc.ClientStreamingServer[NewCommandRequest, NewCommandResponse]) error
 	// Cancel all tasks in queue created by operator and located in status "NEW"
 	CancelTasks(context.Context, *CancelTasksRequest) (*CancelTasksResponse, error)
 	// Get direct task's output. Used to get task's big output
@@ -574,8 +574,8 @@ func (UnimplementedOperatorServiceServer) SetCredentialNote(context.Context, *Se
 func (UnimplementedOperatorServiceServer) SetCredentialsNote(context.Context, *SetCredentialsNoteRequest) (*SetCredentialsNoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetCredentialsNote not implemented")
 }
-func (UnimplementedOperatorServiceServer) NewGroup(grpc.ClientStreamingServer[NewGroupRequest, NewGroupResponse]) error {
-	return status.Errorf(codes.Unimplemented, "method NewGroup not implemented")
+func (UnimplementedOperatorServiceServer) NewCommand(grpc.ClientStreamingServer[NewCommandRequest, NewCommandResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method NewCommand not implemented")
 }
 func (UnimplementedOperatorServiceServer) CancelTasks(context.Context, *CancelTasksRequest) (*CancelTasksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelTasks not implemented")
@@ -965,12 +965,12 @@ func _OperatorService_SetCredentialsNote_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OperatorService_NewGroup_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(OperatorServiceServer).NewGroup(&grpc.GenericServerStream[NewGroupRequest, NewGroupResponse]{ServerStream: stream})
+func _OperatorService_NewCommand_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(OperatorServiceServer).NewCommand(&grpc.GenericServerStream[NewCommandRequest, NewCommandResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type OperatorService_NewGroupServer = grpc.ClientStreamingServer[NewGroupRequest, NewGroupResponse]
+type OperatorService_NewCommandServer = grpc.ClientStreamingServer[NewCommandRequest, NewCommandResponse]
 
 func _OperatorService_CancelTasks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CancelTasksRequest)
@@ -1126,8 +1126,8 @@ var OperatorService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 		{
-			StreamName:    "NewGroup",
-			Handler:       _OperatorService_NewGroup_Handler,
+			StreamName:    "NewCommand",
+			Handler:       _OperatorService_NewCommand_Handler,
 			ClientStreams: true,
 		},
 	},
