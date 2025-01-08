@@ -988,7 +988,7 @@ func (x *CapPause) GetPause() uint32 {
 }
 
 // Desctruction capability:
-// Destruct agent itself (with removing of executable and self killing)
+// Destroy agent itself (with removing of executable and self killing)
 type CapDestroy struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
