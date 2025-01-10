@@ -3,6 +3,7 @@ package shared
 import (
 	"database/sql/driver"
 	"fmt"
+	"sort"
 
 	commonv1 "github.com/PicoTools/pico-shared/proto/gen/common/v1"
 	"google.golang.org/protobuf/proto"
@@ -525,5 +526,10 @@ func SupportedCaps(mask uint32) []Capability {
 	if mask&uint32(CapExit) == uint32(CapExit) {
 		t = append(t, CapExit)
 	}
+
+	// sort capabilities by theirs values
+	sort.Slice(t, func(i, j int) bool {
+		return t[i] < t[j]
+	})
 	return t
 }
